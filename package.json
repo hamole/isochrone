@@ -1,0 +1,23 @@
+{
+  "name": "isochrone",
+  "version": "0.0.0",
+  "description": "Calculate an array of drive time isochrones around a given point.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamole/isochrone.git"
+  },
+  "keywords": [
+    "isochrone",
+    "osrm"
+  ],
+  "author": "Hamish Graham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hamole/isochrone/issues"
+  },
+  "homepage": "https://github.com/hamole/isochrone#readme"
+}
