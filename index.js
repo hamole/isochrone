@@ -37,10 +37,12 @@ module.exports = {
     });
 
     //Exclude points that fall within the exclusion polygon (like those in water)
-    targets.features = targets.features.filter(function(feat) {
-        return !turf.inside(feat,exclude);
-    });
-
+    if(options.exclude) {
+      targets.features = targets.features.filter(function(feat) {
+          return !turf.inside(feat,options.exclude);
+      });
+    }
+    
     var points = {
         sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
