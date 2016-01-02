@@ -1,4 +1,5 @@
- var turf = require('turf'),
+var turf = require('turf'),
+  _ = require('underscore'),
   OSRM = require('osrm');
 
 
@@ -10,7 +11,8 @@ module.exports = {
    * @return {Array}
    */
 
-  isochrones: function(orign,times,network, options = {maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } ) {
+  isochrones: function(orign,times,network, options) {
+    _.defaults(options,{maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } );
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featureCollection([]);
     var length = (time/60) * options.maxspeed;

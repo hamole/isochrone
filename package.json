@@ -17,7 +17,8 @@
   "author": "Hamish Graham",
   "dependencies": {
     "osrm": "*",
-    "turf": "*"
+    "turf": "*",
+    "underscore": "*"
   },
   "license": "MIT",
   "bugs": {
