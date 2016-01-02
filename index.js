@@ -33,7 +33,7 @@ module.exports = {
 
     //The intial grid of points is square but we really only want a radius
     targets.features = targets.features.filter(function(feat) {
-        return turf.distance(turf.point(feat.geometry.coordinates[0], feat.geometry.coordinates[1]), origin, options.unit) <= length;
+        return turf.distance(turf.point([feat.geometry.coordinates[0], feat.geometry.coordinates[1]]), origin, options.unit) <= length;
     });
 
     //Exclude points that fall within the exclusion polygon (like those in water)
