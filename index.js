@@ -11,7 +11,7 @@ module.exports = {
    * @return {Array}
    */
 
-  isochrones: function(origin_latlng,times,network, options) {
+  isochrones: function(origin_latlng,times,network,options, callback) {
     _.defaults(options,{maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } );
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featurecollection([]);
@@ -42,7 +42,7 @@ module.exports = {
           return !turf.inside(feat,options.exclude);
       });
     }
-    
+
     var points = {
         sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
@@ -60,8 +60,9 @@ module.exports = {
             }
           }
         }
+        var poly = turf.concave(valid_points, 0.5, options.unit);
+        callback(poly);
     });
-    return valid_points;
   },
 
   /**
