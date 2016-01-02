@@ -1,5 +1,4 @@
  var turf = require('turf'),
-  async = require('async'),
   OSRM = require('osrm');
 
 
@@ -11,10 +10,10 @@ module.exports = {
    * @return {Array}
    */
 
-  isochrones: function(orign,times,network, options = {maxsped = 90, resolution = 25, unit = 'kilometers', exclude = false; } ) {
+  isochrones: function(orign,times,network, options = {maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } ) {
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featureCollection([]);
-    var length = (time/3600) * options.maxspeed;
+    var length = (time/60) * options.maxspeed;
     var valid_points = new Array(times.length);
     spokes.features.push(turf.destination(origin, length, 180, options.unit));
     spokes.features.push(turf.destination(origin, length, 0, options.unit));
@@ -56,6 +55,7 @@ module.exports = {
           }
         }
     });
+    return valid_points;
 
   },
 

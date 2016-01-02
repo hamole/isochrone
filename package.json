@@ -15,6 +15,10 @@
     "osrm"
   ],
   "author": "Hamish Graham",
+  "dependencies": {
+    "osrm": "*",
+    "turf": "*"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hamole/isochrone/issues"
