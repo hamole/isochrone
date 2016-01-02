@@ -15,7 +15,8 @@ module.exports = {
     _.defaults(options,{maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } );
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featurecollection([]);
-    var length = (time/60) * options.maxspeed;
+    var longest = Math.max.apply(Math, times);
+    var length = (longest/60) * options.maxspeed;
     var valid_points = new Array(times.length);
     spokes.features.push(turf.destination(origin, length, 180, options.unit));
     spokes.features.push(turf.destination(origin, length, 0, options.unit));
