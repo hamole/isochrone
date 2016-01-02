@@ -40,7 +40,7 @@ module.exports = {
     });
 
     var points = {
-        sources: [[origin.geometry.coordinates[0],[origin.geometry.coordinates[1]],
+        sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
     };
     points.destinations = targets.features.map(function (point){
