@@ -41,7 +41,7 @@ module.exports = {
 
     var points = {
         sources: [[origin.geometry.coordinates[0],[origin.geometry.coordinates[1]],
-        destinations: [];
+        destinations: []
     };
     points.destinations = targets.features.map(function (point){
       return [point[0],point[1]];
@@ -58,7 +58,6 @@ module.exports = {
         }
     });
     return valid_points;
-
   },
 
   /**
