@@ -26,7 +26,7 @@ module.exports = {
 
 
     var bbox = turf.extent(spokes);
-    var sizeCellGrid = turf.distance(turf.point(bbox[0], bbox[1]), turf.point(bbox[0], bbox[3]), options.unit) / options.resolution;
+    var sizeCellGrid = turf.distance(turf.point([bbox[0], bbox[1]]), turf.point([bbox[0], bbox[3]]), options.unit) / options.resolution;
 
     //compute destination grid
     var targets = turf.pointGrid(bbox, sizeCellGrid, options.unit);
