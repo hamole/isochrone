@@ -35,6 +35,7 @@ module.exports = {
 
     //compute destination grid
     var targets = turf.pointGrid(bbox, sizeCellGrid, options.unit);
+    console.log(targets);
 
     for (var i = 0; i < targets.features.length; i++){
       if (turf.distance(turf.point([targets.features[i].geometry.coordinates[0], targets.features[i].geometry.coordinates[1]]), origin, options.unit) <= length){
@@ -43,9 +44,12 @@ module.exports = {
         }
       }
     }
-    
+
     osrm.table(points, function(err, table) {
-        if(err) callback(err);
+        if(err) {
+          callback(err);
+          return;
+        }
 
         for (var i = 0; i < table.distance_table[0].length; i++) { 
           for (var j = 0; j < times.length; j++){
