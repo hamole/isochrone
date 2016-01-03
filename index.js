@@ -56,7 +56,7 @@ module.exports = {
         for (var i = 0; i < table.distance_table[0].length; i++) { 
           for (var j = 0; j < times.length; j++){
             if (table.distance_table[0][i]/10 <= times[j]){
-              valid_points[j].push(table.destination_coodinates[i]);
+              valid_points[j].push(table.destination_coordinates[i]);
             }
           }
         }
