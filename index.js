@@ -13,6 +13,9 @@ module.exports = {
 
   isochrones: function(origin_latlng,times,network,options, callback) {
     _.defaults(options,{maxspeed : 60, resolution : 25, unit : 'kilometers', exclude : false } );
+    if(options.resolution > 50){
+      options.resolution = 50;
+    }
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featurecollection([]);
     var longest = Math.max.apply(Math, times);
@@ -49,7 +52,6 @@ module.exports = {
           callback(err);
           return;
         }
-        console.log("in callback");
         for (var i = 0; i < valid_points.length; i++){
           valid_points[i] = [];
         }
