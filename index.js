@@ -48,7 +48,7 @@ module.exports = {
         destinations: []
     };
     for (var i = 0; i < targets.features.length; i++){
-      points.destinations(push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]))
+      points.destinations.push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]);
     }
     osrm.table(points, function(err, table) {
         if(err) callback(err);
