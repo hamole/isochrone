@@ -51,7 +51,7 @@ module.exports = {
       return [point[0],point[1]];
     });
     osrm.table(points, function(err, table) {
-        if(err) throw err;
+        if(err) callback(err);
 
         for (i = 0; i < table.distance_table[0].length; i++) { 
           for (j = 0; j < times.length; j++){
@@ -61,7 +61,7 @@ module.exports = {
           }
         }
         var poly = turf.concave(valid_points, 0.5, options.unit);
-        callback(poly);
+        callback(err, poly);
     });
   },
 
