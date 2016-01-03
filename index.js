@@ -28,14 +28,13 @@ module.exports = {
     var bbox = turf.extent(spokes);
     var sizeCellGrid = turf.distance(turf.point([bbox[0], bbox[1]]), turf.point([bbox[0], bbox[3]]), options.unit) / options.resolution;
 
-    var points = {
+    /*var points = {
         sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
     };
 
     //compute destination grid
     var targets = turf.pointGrid(bbox, sizeCellGrid, options.unit);
-    console.log(targets);
 
     for (var i = 0; i < targets.features.length; i++){
       if (turf.distance(turf.point([targets.features[i].geometry.coordinates[0], targets.features[i].geometry.coordinates[1]]), origin, options.unit) <= length){
@@ -43,8 +42,12 @@ module.exports = {
           points.destinations.push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]);
         }
       }
-    }
+    }*/
 
+    var points = {
+        sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
+        destinations: [[145.0062620,-37.9336990]]
+    };    
     osrm.table(points, function(err, table) {
         if(err) {
           callback(err);
