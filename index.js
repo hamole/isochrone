@@ -60,7 +60,7 @@ module.exports = {
         
         var fc = turf.featurecollection([]);
         for (var i = 0; i < valid_points.length; i++) {
-          fc.push(turf.point([valid_points[1],valid_points[0]]));
+          fc.features.push(turf.point([valid_points[1],valid_points[0]]));
         } 
         var poly = turf.concave(fc, 0.5, options.unit);
         callback(err, poly);
