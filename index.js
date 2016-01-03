@@ -50,6 +50,9 @@ module.exports = {
           return;
         }
         console.log("in callback");
+        for (var i = 0; i < valid_points.length; i++){
+          valid_points[i] = [];
+        }
         for (var i = 0; i < table.distance_table[0].length; i++) { 
           for (var j = 0; j < times.length; j++){
             if (table.distance_table[0][i]/10 <= times[j]){
