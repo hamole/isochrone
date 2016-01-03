@@ -45,8 +45,8 @@ module.exports = {
     }*/
 
     var points = {
-        sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
-        destinations: [[145.0062620,-37.9336990]]
+        sources: [[origin.geometry.coordinates[1],origin.geometry.coordinates[0]]],
+        destinations: [[-37.9336990,145.0062620]]
     };    
     osrm.table(points, function(err, table) {
         if(err) {
