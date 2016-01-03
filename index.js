@@ -16,7 +16,7 @@ module.exports = {
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featurecollection([]);
     var longest = Math.max.apply(Math, times);
-    var length = (longest/60) * options.maxspeed;
+    var length = (longest*3600) * options.maxspeed;
     var valid_points = new Array(times.length);
     var origin = turf.point(origin_latlng);
     spokes.features.push(turf.destination(origin, length, 180, options.unit));
@@ -52,7 +52,7 @@ module.exports = {
         console.log("in callback");
         for (var i = 0; i < table.distance_table[0].length; i++) { 
           for (var j = 0; j < times.length; j++){
-            if (table.distance_table[0][i] <= times[j]){
+            if (table.distance_table[0][i]/10 <= times[j]){
               valid_points[j].push(table.destination_coodinates[i]);
             }
           }
