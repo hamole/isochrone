@@ -28,28 +28,22 @@ module.exports = {
     var bbox = turf.extent(spokes);
     var sizeCellGrid = turf.distance(turf.point([bbox[0], bbox[1]]), turf.point([bbox[0], bbox[3]]), options.unit) / options.resolution;
 
-    //compute destination grid
-    var targets = turf.pointGrid(bbox, sizeCellGrid, options.unit);
-
-    //The intial grid of points is square but we really only want a radius
-    targets.features = targets.features.filter(function(feat) {
-        return turf.distance(turf.point([feat.geometry.coordinates[0], feat.geometry.coordinates[1]]), origin, options.unit) <= length;
-    });
-
-    //Exclude points that fall within the exclusion polygon (like those in water)
-    if(options.exclude) {
-      targets.features = targets.features.filter(function(feat) {
-          return !turf.inside(feat,options.exclude);
-      });
-    }
-
     var points = {
         sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
     };
+
+    //compute destination grid
+    var targets = turf.pointGrid(bbox, sizeCellGrid, options.unit);
+
     for (var i = 0; i < targets.features.length; i++){
-      points.destinations.push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]);
+      if (turf.distance(turf.point([targets.features[i].geometry.coordinates[0], targets.features[i].geometry.coordinates[1]]), origin, options.unit) <= length){
+        if(!turf.inside(targets.features[i],options.exclude)) {
+          points.destinations.push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]);
+        }
+      }
     }
+    
     osrm.table(points, function(err, table) {
         if(err) callback(err);
 
