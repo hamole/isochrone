@@ -12,7 +12,7 @@ module.exports = {
    */
 
   isochrones: function(origin_latlng,times,network,options, callback) {
-    _.defaults(options,{maxspeed : 90, resolution : 25, unit : 'kilometers', exclude : false } );
+    _.defaults(options,{maxspeed : 60, resolution : 25, unit : 'kilometers', exclude : false } );
     var osrm = network instanceof OSRM ? network : new OSRM(network);
     var spokes = turf.featurecollection([]);
     var longest = Math.max.apply(Math, times);
