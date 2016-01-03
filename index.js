@@ -47,14 +47,14 @@ module.exports = {
         sources: [[origin.geometry.coordinates[0],origin.geometry.coordinates[1]]],
         destinations: []
     };
-    points.destinations = targets.features.map(function (point){
-      return [point[0],point[1]];
-    });
+    for (var i = 0; i < targets.features.length; i++){
+      points.destinations(push([targets.features[i].geometry.coordinates[0],targets.features[i].geometry.coordinates[1]]))
+    }
     osrm.table(points, function(err, table) {
         if(err) callback(err);
 
-        for (i = 0; i < table.distance_table[0].length; i++) { 
-          for (j = 0; j < times.length; j++){
+        for (var i = 0; i < table.distance_table[0].length; i++) { 
+          for (var j = 0; j < times.length; j++){
             if (table.distance_table[0][i] <= times[j]){
               valid_points[j].push(table.destination_coodinates[i]);
             }
