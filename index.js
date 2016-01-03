@@ -56,14 +56,14 @@ module.exports = {
         for (var i = 0; i < table.distance_table[0].length; i++) { 
           for (var j = 0; j < times.length; j++){
             if (table.distance_table[0][i]/10 <= times[j]){
-              valid_points[j].push(table.destination_coordinates[i]);
+              valid_points[j].push([table.destination_coordinates[i][1],table.destination_coordinates[i][0]]);
             }
           }
         }
         
         var fc = turf.featurecollection([]);
-        for (var i = 0; i < valid_points.length; i++) {
-          fc.features.push(turf.point([valid_points[1],valid_points[0]]));
+        for (var i = 0; i < valid_points[0].length; i++) {
+          fc.features.push(turf.point([valid_points[0][i][0],valid_points[0][i][1]]));
         } 
         var poly = turf.concave(fc, 0.5, options.unit);
         callback(err, poly);
