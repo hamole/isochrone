@@ -70,7 +70,9 @@ module.exports = {
           //fc.features.push(turf.point([valid_points[0][i][0],valid_points[0][i][1]]));
         } 
         //var poly = turf.buffer(turf.concave(fc,sizeCellGrid*2,options.unit),sizeCellGrid/2,options.unit);
-        var poly = turf.buffer(hull(hull_points,20),sizeCellGrid/2,options.unit);
+        var hpol = hull(hull_points,20);
+        hpol = turf.polygon(hpol);
+        var poly = turf.buffer(hpol,sizeCellGrid/2,options.unit);
         callback(err, poly);
     });
   },
