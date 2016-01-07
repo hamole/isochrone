@@ -18,7 +18,8 @@
   "dependencies": {
     "osrm": "*",
     "turf": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "hull.js": "*"
   },
   "license": "MIT",
   "bugs": {

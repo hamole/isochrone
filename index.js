@@ -1,6 +1,7 @@
 var turf = require('turf'),
   _ = require('underscore'),
-  OSRM = require('osrm');
+  OSRM = require('osrm'),
+  hull = require('hull.js');
 
 
 module.exports = {
@@ -40,9 +41,9 @@ module.exports = {
 
     for (var i = 0; i < targets.features.length; i++){
       if (turf.distance(turf.point([targets.features[i].geometry.coordinates[0], targets.features[i].geometry.coordinates[1]]), origin, options.unit) <= length){
-        if(!turf.inside(targets.features[i],options.exclude)) {
+        //if(!turf.inside(targets.features[i],options.exclude)) {
           points.destinations.push([targets.features[i].geometry.coordinates[1],targets.features[i].geometry.coordinates[0]]);
-        }
+       // }
       }
     }
 
@@ -62,12 +63,14 @@ module.exports = {
           }
         }
         
-        var fc = turf.featurecollection([]);
+        //var fc = turf.featurecollection([]);
+        var hull_points = [];
         for (var i = 0; i < valid_points[0].length; i++) {
-          fc.features.push(turf.point([valid_points[0][i][0],valid_points[0][i][1]]));
+          hull_points.push([valid_points[0][i][0],valid_points[0][i][1]]);
+          //fc.features.push(turf.point([valid_points[0][i][0],valid_points[0][i][1]]));
         } 
-        var poly = turf.buffer(turf.concave(fc,sizeCellGrid*2,options.unit),sizeCellGrid/2,options.unit);
-         
+        //var poly = turf.buffer(turf.concave(fc,sizeCellGrid*2,options.unit),sizeCellGrid/2,options.unit);
+        var poly = turf.buffer(hull.hull(hull_points,20),sizeCellGrid/2,options.unit);
         callback(err, poly);
     });
   },
