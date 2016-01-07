@@ -17,9 +17,8 @@
   "author": "Hamish Graham",
   "dependencies": {
     "osrm": "*",
-    "turf": "*",
-    "underscore": "*",
-    "hull.js": "*"
+    "turf": "git+https://github.com/hamole/turf.git",
+    "underscore": "*"
   },
   "license": "MIT",
   "bugs": {
